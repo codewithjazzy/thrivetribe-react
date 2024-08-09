@@ -1,7 +1,9 @@
+import { Textarea, TextInput } from "@mantine/core";
+
 
 export function FormInput({ type, id, name, label, defaultValue }) {
     return (
-        <div>
+        <div>       
             <label htmlFor={id}>{label}</label>
             <input type={type} id={id} name={name} defaultValue={defaultValue} />
         </div>
@@ -10,12 +12,28 @@ export function FormInput({ type, id, name, label, defaultValue }) {
 //<FormInput type="" id="" name="" label="" required />
 
 
-export function FormTextarea({ id, name, label, defaultValue }){
+export function FormTextarea({ name, label, defaultValue }){
     return (
-        <div>
-            <label htmlFor={id}>{label}</label>
-            <textarea name={name} id={id} defaultValue={defaultValue}></textarea>
-        </div>
+        <Textarea
+            name={name}
+            label={label}
+            defaultValue={defaultValue}
+            size="md"
+            resize="vertical"
+            autosize
+            minRows={2}
+            placeholder="Enter your text here"
+        />
     );
 }
 //<FormTextarea id="" name="" label="" />
+//       <TextInput
+//  name={name}
+//  label={label}
+//  defaultValue={defaultValue}
+//  size="md"
+//  resize="vertical"
+//  autosize
+//  minRows={2}
+//  placeholder="Enter your text here"
+// />

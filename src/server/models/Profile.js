@@ -1,5 +1,7 @@
-import validator from 'validator';
-import mongoose from "mongoose"; // connects to and communicates with database to use schemas
+import { email, website, phone } from "../config/validation";
+import mongoose from "mongoose";
+
+
 
 // Profile Schema
 const profileSchema = new mongoose.Schema({
@@ -32,28 +34,22 @@ const profileSchema = new mongoose.Schema({
   email: {
     type: String,
     validate: {
-      validator: function(v) {
-        return !v || validator.isEmail(v);
-      },
-      message: props => `${props.value} is not a valid email address!`
+      validator: (value) => email.isValidSync(value),
+      message: "Please enter a valid email address",
     }
   },
   phone: {
     type: String,
     validate: {
-      validator: function(v) {
-        return !v || validator.isMobilePhone(v, 'en-US');
-      },
-      message: props => `${props.value} is not a valid phone number!`
+      validator: (value) => phone.isValidSync(value),
+      message: "Please enter a valid US phone number",
     }
   },
   website: {
     type: String,
     validate: {
-      validator: function(v) {
-        return !v || validator.isURL(v);
-      },
-      message: props => `${props.value} is not a valid URL!`
+      validator: (value) => website.isValidSync(value),
+      message: "Please enter a valid URL",
     }
   },
   expertise: [{
